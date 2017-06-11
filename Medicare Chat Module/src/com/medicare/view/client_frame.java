@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class client_frame extends javax.swing.JFrame 
 {
-    
+  
     String username, address = "localhost";
     ArrayList<String> users = new ArrayList();
     int port = 2222;
@@ -17,17 +17,15 @@ public class client_frame extends javax.swing.JFrame
     Socket sock;
     BufferedReader reader;
     PrintWriter writer;
-
-    client_frame(String Username, String selectedUser) {
+    
+    public client_frame(String Username, String SelectedUser) 
+    {
         initComponents();
-        lb_username.setText(Username+" @@@ "+selectedUser);
         this.username = Username;
-        
-        
-         if (isConnected == false) 
+        lblUsername.setText(username+" - Chatting with - "+SelectedUser);
+                if (isConnected == false) 
         {
-           
-
+            
             try 
             {
                 sock = new Socket(address, port);
@@ -59,10 +57,20 @@ public class client_frame extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(null, "Login failed!","Failed!!",
                                         JOptionPane.ERROR_MESSAGE);
                 }
-    
     }
     
-    //--------------------------//
+    
+
+    client_frame() {
+       
+    }
+    
+    public void Connect(String username){
+ 
+               this.username = username;
+          
+           
+}
     
     public void ListenThread() 
     {
@@ -123,14 +131,11 @@ public class client_frame extends javax.swing.JFrame
             ta_chat.append("Failed to disconnect. \n");
         }
         isConnected = false;
-        
+       
 
     }
     
-    public client_frame() 
-    {
-        initComponents();
-    }
+    
     
     //--------------------------//
     
@@ -179,21 +184,20 @@ public class client_frame extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lb_username = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
         b_disconnect = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_chat = new javax.swing.JTextArea();
         tf_chat = new javax.swing.JTextField();
         b_send = new javax.swing.JButton();
+        lb_name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat - Client's frame");
         setName("client"); // NOI18N
         setResizable(false);
 
-        lb_username.setText("Username :");
-
-        b_disconnect.setText("Close Chat");
+        b_disconnect.setText("Disconnect");
         b_disconnect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_disconnectActionPerformed(evt);
@@ -211,6 +215,9 @@ public class client_frame extends javax.swing.JFrame
             }
         });
 
+        lb_name.setText("TechWorld3g");
+        lb_name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,32 +228,37 @@ public class client_frame extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tf_chat, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_send, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addComponent(b_send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(384, 384, 384)
+                        .addComponent(b_disconnect)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(lb_username, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b_disconnect)
-                .addGap(22, 22, 22))
+                .addComponent(lb_name)
+                .addGap(201, 201, 201))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lb_username, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b_disconnect)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tf_chat)
-                    .addComponent(b_send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                    .addComponent(b_send, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb_name))
         );
 
         pack();
@@ -255,9 +267,6 @@ public class client_frame extends javax.swing.JFrame
     private void b_disconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_disconnectActionPerformed
         sendDisconnect();
         Disconnect();
-        this.dispose();
-        
-        new DoctorDashboard(username).setVisible(true);
     }//GEN-LAST:event_b_disconnectActionPerformed
 
     private void b_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_sendActionPerformed
@@ -287,7 +296,7 @@ public class client_frame extends javax.swing.JFrame
             @Override
             public void run() 
             {
-                new client_frame().setVisible(true);
+                new client_frame("patient", "doctor").setVisible(true);
             }
         });
     }
@@ -296,7 +305,8 @@ public class client_frame extends javax.swing.JFrame
     private javax.swing.JButton b_disconnect;
     private javax.swing.JButton b_send;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lb_username;
+    private javax.swing.JLabel lb_name;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JTextArea ta_chat;
     private javax.swing.JTextField tf_chat;
     // End of variables declaration//GEN-END:variables

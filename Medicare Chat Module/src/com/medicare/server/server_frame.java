@@ -1,14 +1,19 @@
 package com.medicare.server;
 
+import com.medicare.model.User;
 import java.io.*;
 import java.net.*;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 public class server_frame extends javax.swing.JFrame 
 {
    ArrayList clientOutputStreams;
    ArrayList<String> users;
-
+DefaultTableModel dtm;
    public class ClientHandler implements Runnable	
    {
        BufferedReader reader;
@@ -77,6 +82,16 @@ public class server_frame extends javax.swing.JFrame
              } 
 	} 
     }
+   
+   public ArrayList<String> OnlineUsers(){
+   ta_chat.append("\n Online users : \n");
+        for (String current_user : users)
+        {
+            ta_chat.append(current_user);
+            ta_chat.append("\n");
+            
+        }   return users;
+   }
 
     public server_frame() 
     {
@@ -198,13 +213,7 @@ public class server_frame extends javax.swing.JFrame
     }//GEN-LAST:event_b_startActionPerformed
 
     private void b_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_usersActionPerformed
-        ta_chat.append("\n Online users : \n");
-        for (String current_user : users)
-        {
-            ta_chat.append(current_user);
-            ta_chat.append("\n");
-        }    
-        
+          OnlineUsers();
     }//GEN-LAST:event_b_usersActionPerformed
 
     private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed

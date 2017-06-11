@@ -22,7 +22,7 @@ import static sun.security.jgss.GSSUtil.login;
  */
 public class LoginForm extends javax.swing.JFrame {
 String query;
-    DatabaseConnection conn = new DatabaseConnection();
+    private DatabaseConnection conn;
     private UserManagement usr;
     private PreparedStatement pst=null;
     ResultSet rs = null;
@@ -154,7 +154,7 @@ String query;
     }//GEN-LAST:event_btnSignUpPageActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    
+                conn = new DatabaseConnection();
                 char[] temp_pwd=txtPassword.getPassword();
                 String pwd=null;
                 pwd=String.copyValueOf(temp_pwd);
@@ -178,15 +178,21 @@ String query;
                             System.out.println(usertype);
                              if (usertype.equals("DOCTOR")){
                                  this.dispose();
+                                  new client_frame().Connect(txtUsername.getText());
                              new DoctorDashboard(txtUsername.getText()).setVisible(true);
+                            
                              }
                              else if (usertype.equals("PATIENT")){
                                  this.dispose();
+                                 new client_frame().Connect(txtUsername.getText());
                              new patientDashboard(txtUsername.getText()).setVisible(true);
+                             
                              }
                              else if (usertype.equals("ADMIN")){
                                  this.dispose();
+                                 new client_frame().Connect(txtUsername.getText());
                              new adminDashboard(txtUsername.getText()).setVisible(true);
+                             
                              }
                              else{
                              JOptionPane.showMessageDialog(null, "Undefined Usertype!","Login Failed!!",
