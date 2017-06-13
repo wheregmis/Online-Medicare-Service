@@ -31,23 +31,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="b_end" max="32767" attributes="0"/>
-                          <Component id="b_start" pref="75" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="b_start" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace pref="291" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="b_clear" max="32767" attributes="0"/>
-                          <Component id="b_users" pref="103" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="b_clear" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="b_end" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lb_name" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,17 +52,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="340" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="b_start" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="b_users" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="b_start" min="-2" max="-2" attributes="0"/>
+                  <Component id="b_end" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="b_clear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="b_end" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="lb_name" min="-2" max="-2" attributes="0"/>
+              <Component id="b_clear" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,14 +95,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_endActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="b_users">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Online Users"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_usersActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="b_clear">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
@@ -119,16 +102,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_clearActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lb_name">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="TechWorld3g"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

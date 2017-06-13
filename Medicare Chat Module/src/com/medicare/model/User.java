@@ -10,9 +10,9 @@ public class User {
     private int id;
     private String name;
     private String username;
-    private String email;
-    private String address;
     private String password;
+    private String email;
+    private int usertypeid;
 
     public User(String username, String password) {
         this.username = username;
@@ -21,33 +21,44 @@ public class User {
     
     
     
-    public User(int id, String name, String username, String email, String address) {
+    public User(int id, String name, String username, String email, int usertype) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
-        this.address = address;
+        this.usertypeid = usertype;
     }
 
-    public User(String name, String username, String password, String email, String address) {
+    public User(String name, String username, String password, String email, int usertype) {
         this.name = name;
         this.username = username;
         this.email = email;
-        this.address = address;
+        this.usertypeid = usertype;
         this.password = password;
     }
 
-    public User(String name) {
-        this.name = name;
+    public User(String username) {
+        this.username = username;
     }
 
-    public User(int id, String Name, String Username, String Password, String Email, String Address) {
+    public User(int id, String Name, String Username, String Password, String Email, int usertype) {
        this.name = Name;
         this.username = Username;
         this.email = Email;
-        this.address = Address;
+        this.usertypeid = usertype;
         this.password = Password;
         this.id = id;
+    }
+
+    public User(String name, String username, String password, String email) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name, String username, String password, String email, String address) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
@@ -96,14 +107,15 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public int getUsertypeid() {
+        return usertypeid;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUsertypeid(int usertypeid) {
+        this.usertypeid = usertypeid;
     }
 
+   
   
 
    

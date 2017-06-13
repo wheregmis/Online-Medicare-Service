@@ -106,9 +106,7 @@ DefaultTableModel dtm;
         ta_chat = new javax.swing.JTextArea();
         b_start = new javax.swing.JButton();
         b_end = new javax.swing.JButton();
-        b_users = new javax.swing.JButton();
         b_clear = new javax.swing.JButton();
-        lb_name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat - Server's frame");
@@ -133,22 +131,12 @@ DefaultTableModel dtm;
             }
         });
 
-        b_users.setText("Online Users");
-        b_users.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_usersActionPerformed(evt);
-            }
-        });
-
         b_clear.setText("Clear");
         b_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_clearActionPerformed(evt);
             }
         });
-
-        lb_name.setText("TechWorld3g");
-        lb_name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,18 +147,14 @@ DefaultTableModel dtm;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(b_end, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_start, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                        .addComponent(b_start, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(b_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_users, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(b_clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(b_end, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lb_name)
-                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,15 +162,12 @@ DefaultTableModel dtm;
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(b_start)
-                    .addComponent(b_users))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_clear)
                     .addComponent(b_end))
-                .addGap(4, 4, 4)
-                .addComponent(lb_name))
+                .addGap(18, 18, 18)
+                .addComponent(b_clear)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -211,10 +192,6 @@ DefaultTableModel dtm;
         
         ta_chat.append("Server started...\n");
     }//GEN-LAST:event_b_startActionPerformed
-
-    private void b_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_usersActionPerformed
-          OnlineUsers();
-    }//GEN-LAST:event_b_usersActionPerformed
 
     private void b_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clearActionPerformed
         ta_chat.setText("");
@@ -319,9 +296,7 @@ DefaultTableModel dtm;
     private javax.swing.JButton b_clear;
     private javax.swing.JButton b_end;
     private javax.swing.JButton b_start;
-    private javax.swing.JButton b_users;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lb_name;
     private javax.swing.JTextArea ta_chat;
     // End of variables declaration//GEN-END:variables
 }

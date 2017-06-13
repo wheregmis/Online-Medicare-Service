@@ -5,6 +5,14 @@
  */
 package com.medicare.view;
 
+import com.medicare.controller.AppointmentManagement;
+import com.medicare.controller.UserManagement;
+import com.medicare.model.Appointment;
+import com.medicare.model.User;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Xawbeen Regmi
@@ -12,13 +20,45 @@ package com.medicare.view;
 public class PatientsAppointment extends javax.swing.JFrame {
 
     String Username;
+    int id;
+    private DefaultTableModel dtm;
+    private AppointmentManagement apt;
+    private UserManagement usr;
     public PatientsAppointment() {
         initComponents();
     }
 
     PatientsAppointment(String Username) {
         initComponents();
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+        if (JOptionPane.showConfirmDialog(null,
+            "Are you sure to close this window?", "Really Closing?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            new UserManagement().setLoginStatus(Username, "Offline");
+            System.exit(0);
+        }
+    }
+});
         this.Username = Username;
+        
+        dtm = (DefaultTableModel) tbl_appointments.getModel();
+        
+         apt= new AppointmentManagement();
+        ArrayList<Appointment> data = apt.getAllAppointments(this.Username,"patient");
+        
+        for(Appointment p: data){
+           Object row[]={p.getId(),p.getAppointmentTitle(),p.getAppointmentTime(),p.getAppointmentBy()};
+            
+           if (p.getAppointmentTime().equals("")){
+           
+           }
+           else{
+           dtm.addRow(row);}
+        }
         
     }
 
@@ -33,27 +73,35 @@ public class PatientsAppointment extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_appointments = new javax.swing.JTable();
-        btnGetAppointment = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnAppointment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tbl_appointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Title", "Time", "Doctor"
             }
         ));
+        tbl_appointments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_appointmentsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_appointments);
 
-        btnGetAppointment.setText("Get Appointment");
-        btnGetAppointment.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("List of Appointments");
+
+        jLabel2.setText("Click on Doctors name to chat with the doctor");
+
+        btnAppointment.setText("Get Appointment");
+        btnAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetAppointmentActionPerformed(evt);
+                btnAppointmentActionPerformed(evt);
             }
         });
 
@@ -64,29 +112,51 @@ public class PatientsAppointment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btnGetAppointment)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAppointment)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnGetAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(34, 34, 34)
+                .addComponent(btnAppointment)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGetAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetAppointmentActionPerformed
-        new BeforeChat(Username).setVisible(true);
-    }//GEN-LAST:event_btnGetAppointmentActionPerformed
+    private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
+       this.dispose();
+        new GetAppointment(Username).setVisible(true);
+    }//GEN-LAST:event_btnAppointmentActionPerformed
+
+    private void tbl_appointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_appointmentsMouseClicked
+       int row = tbl_appointments.getSelectedRow();
+          String table_click = (tbl_appointments.getModel().getValueAt(row,3).toString());
+          System.out.println(table_click);
+        this.dispose();
+          new chatFrame(Username, table_click).setVisible(true);
+    }//GEN-LAST:event_tbl_appointmentsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -124,7 +194,9 @@ public class PatientsAppointment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGetAppointment;
+    private javax.swing.JButton btnAppointment;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_appointments;
     // End of variables declaration//GEN-END:variables
